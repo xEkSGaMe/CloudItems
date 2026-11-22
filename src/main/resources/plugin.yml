@@ -1,13 +1,13 @@
-name: TotemRunes
+name: CloudItems
 version: '${project.version}'
-main: com.yourname.totemrunes.TotemRunesPlugin
+main: com.yourname.clouditems.CloudItems
 api-version: '1.21'
 authors: [yourname]
-description: Totem runes plugin
+description: CloudItems plugin
 
 commands:
   runes:
-    description: Manage totem runes
+    description: Manage CloudItems runes
     usage: /runes <give|reload|list|info>
     permission: runes.admin
 
@@ -16,5 +16,5 @@ permissions:
     description: Admin access to /runes
     default: op
   runes.use:
-    description: Allows activating totem runes
+    description: Allows activating runes
     default: true

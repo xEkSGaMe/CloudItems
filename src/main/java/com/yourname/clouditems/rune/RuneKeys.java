@@ -1,4 +1,4 @@
-package com.yourname.totemrunes.rune;
+package com.yourname.clouditems.rune;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;

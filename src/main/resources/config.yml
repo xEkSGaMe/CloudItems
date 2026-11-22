@@ -34,6 +34,7 @@ runes:
     cooldown: 150
 messages:
   cooldown: "{rune}: {time}"
-  already-imprinted: "Эта руна уже наложена на тотем"
+  already-imprinted: "Эта руна уже наложена на Талисман"
+  no-experience: "Недостаточно уровня опыта для наложения руны"
   smithing-blocked: "Руны нельзя использовать на кузнечном столе"
   given: "Выдан предмет: {rune}"

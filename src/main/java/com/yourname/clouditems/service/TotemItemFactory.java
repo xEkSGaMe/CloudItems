@@ -1,10 +1,10 @@
-package com.yourname.totemrunes.service;
+package com.yourname.clouditems.service;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.rune.RuneType;
-import com.yourname.totemrunes.resourcepack.ResourcePackModels;
-import com.yourname.totemrunes.util.TextUtil;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.rune.RuneType;
+import com.yourname.clouditems.resourcepack.ResourcePackModels;
+import com.yourname.clouditems.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -21,11 +21,11 @@ import java.util.Set;
 
 public final class TotemItemFactory {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final RuneKeys keys;
     private final RuneItemFactory runeItemFactory;
 
-    public TotemItemFactory(TotemRunesPlugin plugin, RuneKeys keys, RuneItemFactory runeItemFactory) {
+    public TotemItemFactory(CloudItems plugin, RuneKeys keys, RuneItemFactory runeItemFactory) {
         this.plugin = plugin;
         this.keys = keys;
         this.runeItemFactory = runeItemFactory;
@@ -99,7 +99,7 @@ public final class TotemItemFactory {
     }
 
     public void applyLore(ItemMeta meta, Set<RuneType> runes) {
-        meta.displayName(TextUtil.noItalic(Component.text("ТОТЕМ БЕССМЕРТИЯ", TextColor.fromHexString("#FFD76E")).decorate(TextDecoration.BOLD)));
+        meta.displayName(talismanDisplayName());
         List<Component> lore = new ArrayList<>();
         lore.add(TextUtil.text("Руны: " + runes.size() + "/5", "#A0A0A0"));
         lore.add(Component.empty());
@@ -111,6 +111,20 @@ public final class TotemItemFactory {
         lore.add(Component.empty());
         lore.add(TextUtil.text("ПКМ в левой руке - активировать", "#8A8A8A"));
         meta.lore(lore);
+    }
+
+    private static Component talismanDisplayName() {
+        String name = "Талисман";
+        String[] colors = {
+                "#E9C911", "#E8C414", "#E7BF16", "#E6BA19",
+                "#E5B61C", "#E4B11F", "#E3AC21", "#E2A724"
+        };
+        var builder = Component.text();
+        for (int i = 0; i < name.length(); i++) {
+            builder.append(Component.text(String.valueOf(name.charAt(i)), TextColor.fromHexString(colors[i]))
+                    .decorate(TextDecoration.BOLD));
+        }
+        return TextUtil.noItalic(builder.build());
     }
 
     private org.bukkit.NamespacedKey keyFor(RuneType type) {

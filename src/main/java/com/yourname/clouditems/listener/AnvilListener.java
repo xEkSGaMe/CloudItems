@@ -1,11 +1,11 @@
-package com.yourname.totemrunes.listener;
+package com.yourname.clouditems.listener;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.rune.RuneType;
-import com.yourname.totemrunes.service.RuneItemFactory;
-import com.yourname.totemrunes.service.TotemItemFactory;
-import com.yourname.totemrunes.util.TextUtil;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.rune.RuneType;
+import com.yourname.clouditems.service.RuneItemFactory;
+import com.yourname.clouditems.service.TotemItemFactory;
+import com.yourname.clouditems.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -24,12 +24,12 @@ import java.util.UUID;
 
 public final class AnvilListener implements Listener {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final RuneItemFactory runeItemFactory;
     private final TotemItemFactory totemItemFactory;
     private final Map<UUID, Long> messageThrottle = new HashMap<>();
 
-    public AnvilListener(TotemRunesPlugin plugin, RuneKeys keys, RuneItemFactory runeItemFactory, TotemItemFactory totemItemFactory) {
+    public AnvilListener(CloudItems plugin, RuneKeys keys, RuneItemFactory runeItemFactory, TotemItemFactory totemItemFactory) {
         this.plugin = plugin;
         this.runeItemFactory = runeItemFactory;
         this.totemItemFactory = totemItemFactory;
@@ -76,7 +76,7 @@ public final class AnvilListener implements Listener {
 
         if (totemItemFactory.hasRune(totemItem, runeType)) {
             event.setResult(null);
-            sendThrottled(event, plugin.getConfig().getString("messages.already-imprinted", "Эта руна уже наложена на тотем"));
+            sendThrottled(event, plugin.getConfig().getString("messages.already-imprinted", "Эта руна уже наложена на Талисман"));
             return;
         }
 
@@ -96,10 +96,20 @@ public final class AnvilListener implements Listener {
             }
         }
 
+        int runeCount = totemItemFactory.getImprintedRunes(result).size();
+        int cost = runeLevelCost(runeCount);
+
+        // Стоимость наковальни — в уровнях опыта, как и ванильная стоимость.
+        if (event.getView().getPlayer() instanceof Player player && player.getLevel() < cost) {
+            event.setResult(null);
+            sendThrottled(event, plugin.getConfig().getString("messages.no-experience",
+                    "Недостаточно уровня опыта для наложения руны"));
+            return;
+        }
+
         event.setResult(result);
         event.getInventory().setResult(result);
 
-        int cost = 1;
         applyAnvilCost(event.getInventory(), event.getView(), cost);
 
         ItemStack firstSnapshot = first == null ? null : first.clone();
@@ -120,9 +130,24 @@ public final class AnvilListener implements Listener {
             if (!sameItem(openFirst, firstSnapshot) || !sameItem(openSecond, secondSnapshot)) {
                 return;
             }
+            if (player.getLevel() < cost) {
+                openInv.setResult(null);
+                return;
+            }
             openInv.setResult(resultSnapshot.clone());
             applyAnvilCost(openInv, player.getOpenInventory(), cost);
         });
+    }
+
+    private static int runeLevelCost(int runeCount) {
+        return switch (runeCount) {
+            case 1 -> 5;
+            case 2 -> 10;
+            case 3 -> 15;
+            case 4 -> 30;
+            case 5 -> 35;
+            default -> 35;
+        };
     }
 
     private boolean isTotem(ItemStack item) {

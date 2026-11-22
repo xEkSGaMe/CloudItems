@@ -1,9 +1,9 @@
-package com.yourname.totemrunes.command;
+package com.yourname.clouditems.command;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneType;
-import com.yourname.totemrunes.service.RuneItemFactory;
-import com.yourname.totemrunes.util.TextUtil;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneType;
+import com.yourname.clouditems.service.RuneItemFactory;
+import com.yourname.clouditems.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -25,10 +25,10 @@ import java.util.stream.Collectors;
 
 public final class RunesCommand implements CommandExecutor, TabCompleter {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final RuneItemFactory runeItemFactory;
 
-    public RunesCommand(TotemRunesPlugin plugin, RuneItemFactory runeItemFactory) {
+    public RunesCommand(CloudItems plugin, RuneItemFactory runeItemFactory) {
         this.plugin = plugin;
         this.runeItemFactory = runeItemFactory;
     }
@@ -101,11 +101,11 @@ public final class RunesCommand implements CommandExecutor, TabCompleter {
 
     private void handleReload(CommandSender sender) {
         plugin.reloadPluginConfig();
-        sender.sendMessage(Component.text("Конфиг TotemRunes перезагружен. Секрет и активные КД сохранены.", TextColor.fromHexString("#7CE38B")));
+        sender.sendMessage(Component.text("Конфиг CloudItems перезагружен. Секрет и активные КД сохранены.", TextColor.fromHexString("#7CE38B")));
     }
 
     private void handleList(CommandSender sender) {
-        sender.sendMessage(TextUtil.noItalic(Component.text("Руны TotemRunes", TextColor.fromHexString("#FFD76E")).decorate(TextDecoration.BOLD)));
+        sender.sendMessage(TextUtil.noItalic(Component.text("Руны CloudItems", TextColor.fromHexString("#FFD76E")).decorate(TextDecoration.BOLD)));
         for (RuneType type : RuneType.values()) {
             sender.sendMessage(Component.text("- " + type.displayName() + " (" + type.id() + ")", TextColor.fromHexString(type.accentHex())));
         }

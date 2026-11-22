@@ -1,8 +1,8 @@
-package com.yourname.totemrunes.listener;
+package com.yourname.clouditems.listener;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.service.RuneItemFactory;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.service.RuneItemFactory;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
@@ -18,11 +18,11 @@ import java.util.UUID;
 
 public final class SmithingListener implements Listener {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final RuneItemFactory runeItemFactory;
     private final Map<UUID, Long> messageThrottle = new HashMap<>();
 
-    public SmithingListener(TotemRunesPlugin plugin, RuneKeys keys, RuneItemFactory runeItemFactory) {
+    public SmithingListener(CloudItems plugin, RuneKeys keys, RuneItemFactory runeItemFactory) {
         this.plugin = plugin;
         this.runeItemFactory = runeItemFactory;
     }

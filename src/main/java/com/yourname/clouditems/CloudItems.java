@@ -1,21 +1,21 @@
-package com.yourname.totemrunes;
+package com.yourname.clouditems;
 
-import com.yourname.totemrunes.command.RunesCommand;
-import com.yourname.totemrunes.listener.AnvilListener;
-import com.yourname.totemrunes.listener.CombatListener;
-import com.yourname.totemrunes.listener.InteractListener;
-import com.yourname.totemrunes.listener.PlayerStateListener;
-import com.yourname.totemrunes.listener.SmithingListener;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.service.CooldownService;
-import com.yourname.totemrunes.service.EffectService;
-import com.yourname.totemrunes.service.ParticleService;
-import com.yourname.totemrunes.service.RuneItemFactory;
-import com.yourname.totemrunes.service.TotemItemFactory;
+import com.yourname.clouditems.command.RunesCommand;
+import com.yourname.clouditems.listener.AnvilListener;
+import com.yourname.clouditems.listener.CombatListener;
+import com.yourname.clouditems.listener.InteractListener;
+import com.yourname.clouditems.listener.PlayerStateListener;
+import com.yourname.clouditems.listener.SmithingListener;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.service.CooldownService;
+import com.yourname.clouditems.service.EffectService;
+import com.yourname.clouditems.service.ParticleService;
+import com.yourname.clouditems.service.RuneItemFactory;
+import com.yourname.clouditems.service.TotemItemFactory;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class TotemRunesPlugin extends JavaPlugin {
+public final class CloudItems extends JavaPlugin {
 
     private RuneKeys keys;
     private CooldownService cooldownService;

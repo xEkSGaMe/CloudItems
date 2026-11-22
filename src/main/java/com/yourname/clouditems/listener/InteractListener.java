@@ -1,12 +1,12 @@
-package com.yourname.totemrunes.listener;
+package com.yourname.clouditems.listener;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.rune.RuneType;
-import com.yourname.totemrunes.service.CooldownService;
-import com.yourname.totemrunes.service.EffectService;
-import com.yourname.totemrunes.service.RuneItemFactory;
-import com.yourname.totemrunes.util.TextUtil;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.rune.RuneType;
+import com.yourname.clouditems.service.CooldownService;
+import com.yourname.clouditems.service.EffectService;
+import com.yourname.clouditems.service.RuneItemFactory;
+import com.yourname.clouditems.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextColor;
@@ -26,13 +26,13 @@ import java.util.Set;
 
 public final class InteractListener implements Listener {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final RuneKeys keys;
     private final RuneItemFactory runeItemFactory;
     private final CooldownService cooldownService;
     private final EffectService effectService;
 
-    public InteractListener(TotemRunesPlugin plugin, RuneKeys keys, RuneItemFactory runeItemFactory,
+    public InteractListener(CloudItems plugin, RuneKeys keys, RuneItemFactory runeItemFactory,
                             CooldownService cooldownService, EffectService effectService) {
         this.plugin = plugin;
         this.keys = keys;

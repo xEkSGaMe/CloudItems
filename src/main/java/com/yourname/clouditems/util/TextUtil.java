@@ -1,4 +1,4 @@
-package com.yourname.totemrunes.util;
+package com.yourname.clouditems.util;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -31,11 +31,6 @@ public final class TextUtil {
 
     public static String formatTime(long millis) {
         long totalSeconds = Math.max(0L, (millis + 999L) / 1000L);
-        long minutes = totalSeconds / 60L;
-        long seconds = totalSeconds % 60L;
-        if (minutes > 0) {
-            return minutes + "м " + String.format("%02d", seconds) + "с";
-        }
-        return seconds + "с";
+        return totalSeconds + "с";
     }
 }

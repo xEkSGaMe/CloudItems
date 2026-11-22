@@ -1,6 +1,6 @@
-package com.yourname.totemrunes.listener;
+package com.yourname.clouditems.listener;
 
-import com.yourname.totemrunes.service.EffectService;
+import com.yourname.clouditems.service.EffectService;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;

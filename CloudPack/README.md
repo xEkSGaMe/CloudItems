@@ -1,6 +1,6 @@
 # CloudPack
 
-Ресурспак для плагина **TotemRunes / CloudItems** под Minecraft **1.21.11**.
+Ресурспак для плагина **CloudItems** под Minecraft **1.21.11**.
 
 ## Что делает
 

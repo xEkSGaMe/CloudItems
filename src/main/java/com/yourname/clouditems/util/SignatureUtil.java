@@ -1,4 +1,4 @@
-package com.yourname.totemrunes.util;
+package com.yourname.clouditems.util;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

@@ -1,4 +1,4 @@
-package com.yourname.totemrunes.resourcepack;
+package com.yourname.clouditems.resourcepack;
 
 import org.bukkit.NamespacedKey;
 

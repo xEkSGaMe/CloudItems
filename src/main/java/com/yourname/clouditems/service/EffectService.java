@@ -1,9 +1,9 @@
-package com.yourname.totemrunes.service;
+package com.yourname.clouditems.service;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.rune.RuneType;
-import com.yourname.totemrunes.util.TextUtil;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.rune.RuneType;
+import com.yourname.clouditems.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -31,7 +31,7 @@ import java.util.UUID;
 
 public final class EffectService {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final CooldownService cooldowns;
 
     private final Map<UUID, EnumMap<RuneType, Long>> activeUntil = new HashMap<>();
@@ -44,7 +44,7 @@ public final class EffectService {
     private final NamespacedKey stubbornSpeedModKey;
     private final NamespacedKey furyArmorModKey;
 
-    public EffectService(TotemRunesPlugin plugin, RuneKeys keys, CooldownService cooldowns) {
+    public EffectService(CloudItems plugin, RuneKeys keys, CooldownService cooldowns) {
         this.plugin = plugin;
         this.cooldowns = cooldowns;
         this.berserkModKey = new NamespacedKey(plugin, "berserk_damage");

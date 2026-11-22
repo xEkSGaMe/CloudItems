@@ -1,6 +1,6 @@
-package com.yourname.totemrunes.service;
+package com.yourname.clouditems.service;
 
-import com.yourname.totemrunes.rune.RuneType;
+import com.yourname.clouditems.rune.RuneType;
 import org.bukkit.entity.Player;
 
 import java.util.EnumMap;
@@ -57,7 +57,7 @@ public final class CooldownService {
 
     public void onQuit(Player player) {
         // Cooldowns are per player in memory and should remain while server runs? Spec says
-        // "смена/поломка тотема КД не сбрасывает. /runes reload КД не трогает." It doesn't say quit clears.
+        // "смена/поломка талисмана КД не сбрасывает. /runes reload КД не трогает." It doesn't say quit clears.
         // Keep them.
     }
 }

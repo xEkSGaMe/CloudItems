@@ -1,14 +1,15 @@
-package com.yourname.totemrunes.service;
+package com.yourname.clouditems.service;
 
-import com.yourname.totemrunes.TotemRunesPlugin;
-import com.yourname.totemrunes.rune.RuneKeys;
-import com.yourname.totemrunes.rune.RuneType;
-import com.yourname.totemrunes.resourcepack.ResourcePackModels;
-import com.yourname.totemrunes.util.SignatureUtil;
-import com.yourname.totemrunes.util.TextUtil;
+import com.yourname.clouditems.CloudItems;
+import com.yourname.clouditems.rune.RuneKeys;
+import com.yourname.clouditems.rune.RuneType;
+import com.yourname.clouditems.resourcepack.ResourcePackModels;
+import com.yourname.clouditems.util.SignatureUtil;
+import com.yourname.clouditems.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public final class RuneItemFactory {
 
-    private final TotemRunesPlugin plugin;
+    private final CloudItems plugin;
     private final RuneKeys keys;
 
-    public RuneItemFactory(TotemRunesPlugin plugin, RuneKeys keys) {
+    public RuneItemFactory(CloudItems plugin, RuneKeys keys) {
         this.plugin = plugin;
         this.keys = keys;
     }
@@ -34,19 +35,25 @@ public final class RuneItemFactory {
         }
 
         TextColor accent = TextColor.fromHexString(type.accentHex());
-        meta.displayName(TextUtil.noItalic(Component.text(type.displayName().toUpperCase(), accent).decorate(TextDecoration.BOLD)));
+        meta.displayName(TextUtil.noItalic(Component.text(type.displayName(), accent)));
 
         List<Component> lore = new ArrayList<>();
-        lore.add(TextUtil.text(type.subtitle(), "#A0A0A0"));
-        lore.add(Component.empty());
         lore.add(TextUtil.text(type.effectSummary(), "#FFFFFF"));
-        lore.add(TextUtil.text("Откат: " + cooldownSeconds(type) + " сек", "#A0A0A0"));
+        lore.add(TextUtil.text("Откат: " + cooldownSeconds(type) + "с", "#A0A0A0"));
         lore.add(Component.empty());
         lore.add(TextUtil.noItalic(Component.text("\"" + type.quote() + "\"", TextColor.fromHexString("#707070")).decorate(TextDecoration.ITALIC)));
         lore.add(Component.empty());
-        lore.add(TextUtil.text("Наложи на Тотем бессмертия", "#8A8A8A"));
+        lore.add(TextUtil.text("Наложи на Талисман", "#8A8A8A"));
         lore.add(TextUtil.text("на наковальне", "#8A8A8A"));
         meta.lore(lore);
+
+        // Ванильные подсказки шаблона кузнеца не относятся к руне — скрываем их.
+        meta.addItemFlags(
+                ItemFlag.HIDE_ADDITIONAL_TOOLTIP,
+                ItemFlag.HIDE_ARMOR_TRIM,
+                ItemFlag.HIDE_ATTRIBUTES,
+                ItemFlag.HIDE_ENCHANTS
+        );
 
         meta.setEnchantmentGlintOverride(true);
         meta.setCustomModelData(modelData(type));
