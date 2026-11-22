@@ -105,9 +105,9 @@ public final class RunesCommand implements CommandExecutor, TabCompleter {
     }
 
     private void handleList(CommandSender sender) {
-        sender.sendMessage(TextUtil.noItalic(Component.text("Руны CloudItems", TextColor.fromHexString("#FFD76E")).decorate(TextDecoration.BOLD)));
+        sender.sendMessage(TextUtil.text("Руны CloudItems", "#FFD76E"));
         for (RuneType type : RuneType.values()) {
-            sender.sendMessage(Component.text("- " + type.displayName() + " (" + type.id() + ")", TextColor.fromHexString(type.accentHex())));
+            sender.sendMessage(TextUtil.text("- " + type.displayName() + " (" + type.id() + ")", type.accentHex()));
         }
     }
 
@@ -121,11 +121,10 @@ public final class RunesCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(Component.text("Неизвестная руна: " + args[1], TextColor.fromHexString("#FF5555")));
             return;
         }
-        sender.sendMessage(TextUtil.noItalic(Component.text(type.displayName(), TextColor.fromHexString(type.accentHex())).decorate(TextDecoration.BOLD)));
-        sender.sendMessage(Component.text(type.subtitle(), TextColor.fromHexString("#A0A0A0")));
-        sender.sendMessage(Component.text(type.effectSummary(), TextColor.fromHexString("#FFFFFF")));
-        sender.sendMessage(Component.text("Откат: " + runeItemFactory.cooldownSeconds(type) + " сек", TextColor.fromHexString("#A0A0A0")));
-        sender.sendMessage(Component.text("\"" + type.quote() + "\"", TextColor.fromHexString("#707070")).decorate(TextDecoration.ITALIC));
+        sender.sendMessage(TextUtil.text(type.displayName(), type.accentHex()));
+        sender.sendMessage(TextUtil.text(type.effectSummary(), "#FFFFFF"));
+        sender.sendMessage(TextUtil.text("Откат: " + runeItemFactory.cooldownSeconds(type) + "с", "#A0A0A0"));
+        sender.sendMessage(TextUtil.noItalic(Component.text("\"" + type.quote() + "\"", TextColor.fromHexString("#707070")).decorate(TextDecoration.ITALIC)));
     }
 
     private void sendUsage(CommandSender sender) {
