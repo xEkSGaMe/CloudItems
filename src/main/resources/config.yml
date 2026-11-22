@@ -1,0 +1,39 @@
+secret: ""
+activation:
+  allow-block-click: true
+  require-sneak: false
+rune-model-data:
+  berserk: 10001
+  immortality: 10002
+  stubborn: 10003
+  parry: 10004
+  fury: 10005
+runes:
+  berserk:
+    duration: 10
+    cooldown: 120
+    damage-bonus: 0.05
+  immortality:
+    heal-hearts: 3
+    regen-duration: 12
+    regen-level: 2
+    cooldown: 120
+  stubborn:
+    speed-duration: 15
+    speed-bonus: 0.20
+    resist-duration: 7
+    resist-reduction: 0.10
+    cooldown: 120
+  parry:
+    duration: 7
+    reflect-ratio: 0.25
+    cooldown: 150
+  fury:
+    window: 10
+    armor-ignore: 0.20
+    cooldown: 150
+messages:
+  cooldown: "{rune}: {time}"
+  already-imprinted: "Эта руна уже наложена на тотем"
+  smithing-blocked: "Руны нельзя использовать на кузнечном столе"
+  given: "Выдан предмет: {rune}"

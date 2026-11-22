@@ -1,0 +1,20 @@
+name: TotemRunes
+version: '${project.version}'
+main: com.yourname.totemrunes.TotemRunesPlugin
+api-version: '1.21'
+authors: [yourname]
+description: Totem runes plugin
+
+commands:
+  runes:
+    description: Manage totem runes
+    usage: /runes <give|reload|list|info>
+    permission: runes.admin
+
+permissions:
+  runes.admin:
+    description: Admin access to /runes
+    default: op
+  runes.use:
+    description: Allows activating totem runes
+    default: true
